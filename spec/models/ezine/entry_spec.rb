@@ -32,4 +32,21 @@ describe Ezine::Entry do
       end
     end
   end
+
+  describe '.verified scope' do
+    before do
+      @entry = create :ezine_entry
+      @entry_not_verified = create :ezine_entry, :not_verified
+    end
+
+    subject { Ezine::Entry.verified }
+
+    it { should include(@entry) }
+    it { should_not include(@entry_not_verified) }
+
+    # TODO database_cleaner を用いて書かないようにする
+    after do
+      Ezine::Entry.destroy_all
+    end
+  end
 end
