@@ -1,3 +1,5 @@
+# vim: filetype=ruby
+
 group :red_green_refactor, halt_on_fail: false do
   # A sample Guardfile
   # More info at https://github.com/guard/guard#readme
