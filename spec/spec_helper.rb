@@ -67,13 +67,22 @@ RSpec.configure do |config|
   config.order = "order"
 
   config.include FactoryGirl::Syntax::Methods
+
+  config.before :suite do
+    DatabaseCleaner.orm = :mongoid
+    DatabaseCleaner.strategy = :truncation
+  end
+
   config.before do
     FactoryGirl.reload
+    DatabaseCleaner.start
+  end
+
+  config.after do
+    DatabaseCleaner.clean
   end
 
   config.filter_run_excluding(mecab: true) unless can_test_mecab_specific?
-
-  `rake db:drop`
 end
 
 def unique_id
