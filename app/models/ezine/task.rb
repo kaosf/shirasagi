@@ -41,7 +41,7 @@ class Ezine::Task
       def deliver_one_page(page, task)
         task.log "# Ezine::Page #{page.site.name} #{page.parent.name} #{page.name} start delivery"
         members = page.members_to_deliver
-        page.results << Time.now # as started time
+        page.results << DateTime.now # as started time
         success_count = 0
         members.each.with_index do |member, index|
           interval_sleep index
@@ -55,7 +55,7 @@ class Ezine::Task
             task.log e.backtrace.join("\n")
           end
         end
-        page.results << Time.now # as finished time
+        page.results << DateTime.now # as finished time
         page.results << success_count
         page.completed = true if members.count == success_count
         if !page.update
