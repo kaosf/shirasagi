@@ -17,6 +17,12 @@ class SS::Migration
       end
     end
 
+    # Validate filepaths.
+    def validate_filepaths
+      timestamps = filepaths.map { |e| take_timestamp e }
+      timestamps == timestamps.uniq
+    end
+
     # Return the all filepaths in *RAILS_ROOT/lib/migrations/**.
     #
     # Returned array is sorted ascending by the filename.
