@@ -8,8 +8,8 @@ module Cms::NodeFilter::View
   end
 
   module ClassMethods
-    def model(cls)
-      self.model_class = cls if cls
+    def model(klass)
+      self.model_class = klass if klass
     end
   end
 

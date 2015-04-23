@@ -15,8 +15,8 @@ module SS::BaseFilter
 
   module ClassMethods
     private
-      def model(cls)
-        self.model_class = cls if cls
+      def model(klass)
+        self.model_class = klass if klass
       end
   end
 
