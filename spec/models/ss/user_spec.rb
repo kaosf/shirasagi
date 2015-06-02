@@ -164,4 +164,10 @@ describe SS::User do
       end
     end
   end
+
+  describe 'group_ids' do
+    before { SS::User.destroy_all }
+    let(:user) { create :ss_user }
+    it { expect(user.groups.first.name).to eq 'ss_group' }
+  end
 end
