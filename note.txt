@@ -1,0 +1,40 @@
+$ rake
+/home/username/.rbenv/versions/2.2.2/bin/ruby -I/home/username/shirasagi/vendor/bundle/ruby/2.2.0/gems/rspec-core-3.2.3/lib:/home/username/shirasagi/vendor/bundle/ruby/2.2.0/gems/rspec-support-3.2.2/lib /home/username/shirasagi/vendor/bundle/ruby/2.2.0/gems/rspec-core-3.2.3/exe/rspec --pattern spec/\*\*\{,/\*/\*\*\}/\*_spec.rb
+[MeCab Spec] not found: /usr/local/libexec/mecab/mecab-dict-index
+Run options: exclude {:js=>true, :ldap=>true, :open_jtalk=>true, :mecab=>true}
+
+  1) cms_groups with auth #show
+     Failure/Error: expect(status_code).to eq 200
+
+       expected: 200
+            got: 403
+
+       (compared using ==)
+     # ./spec/features/cms/groups_spec.rb:44:in `block (3 levels) in <top (required)>'
+
+
+  2) cms_groups with auth #edit
+     Failure/Error: within "form#item-form" do
+     Capybara::ElementNotFound:
+       Unable to find css "form#item-form"
+     # ./spec/features/cms/groups_spec.rb:50:in `block (3 levels) in <top (required)>'
+
+
+  3) cms_groups with auth #delete
+     Failure/Error: within "form" do
+     Capybara::ElementNotFound:
+       Unable to find css "form"
+     # ./spec/features/cms/groups_spec.rb:60:in `block (3 levels) in <top (required)>'
+
+ 1001/1001 |======================================= 100 =======================================>| Time: 00:04:44
+
+Finished in 4 minutes 45.1 seconds (files took 12.31 seconds to load)
+1001 examples, 3 failures
+
+Failed examples:
+
+rspec ./spec/features/cms/groups_spec.rb:42 # cms_groups with auth #show
+rspec ./spec/features/cms/groups_spec.rb:48 # cms_groups with auth #edit
+rspec ./spec/features/cms/groups_spec.rb:58 # cms_groups with auth #delete
+
+/home/username/.rbenv/versions/2.2.2/bin/ruby -I/home/username/shirasagi/vendor/bundle/ruby/2.2.0/gems/rspec-core-3.2.3/lib:/home/username/shirasagi/vendor/bundle/ruby/2.2.0/gems/rspec-support-3.2.2/lib /home/username/shirasagi/vendor/bundle/ruby/2.2.0/gems/rspec-core-3.2.3/exe/rspec --pattern spec/\*\*\{,/\*/\*\*\}/\*_spec.rb failed
