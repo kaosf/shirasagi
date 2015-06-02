@@ -1,8 +1,12 @@
 FactoryGirl.define do
   factory :ss_user, class: SS::User do
     name "ss_user"
-    email "ss@example.jp"
+    sequence(:email) { |n| "ss#{n}@example.jp" }
     in_password "pass"
-    #group_ids [1]
+
+    after :create do |x|
+      group = create :ss_group
+      x.update group_ids: [group.id]
+    end
   end
 end
