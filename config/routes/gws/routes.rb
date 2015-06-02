@@ -1,4 +1,10 @@
 SS::Application.routes.draw do
+  namespace :gws, path: '..g:group/gws' do
+    resources :roles do
+      get :delete, on: :member
+    end
+  end
+
   gws "schedule" do
     resources :plans do
       get :delete, on: :member
