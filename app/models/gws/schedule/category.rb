@@ -12,7 +12,7 @@ class Gws::Schedule::Category
   permit_params :name, :bg_color
 
   validates :name, presence: true
-  validates :bg_color, presence: true
+  validates :bg_color, presence: true, color_scheme: true
 
   scope :search, ->(params) {
     criteria = where({})
