@@ -1,0 +1,4 @@
+ja:
+  errors:
+    messages:
+      invalid_color_scheme: 'は無効な色指定です(例: #FF0000)'
