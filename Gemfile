@@ -48,6 +48,7 @@ gem 'fullcalendar.io-rails'
 gem 'bxslider-rails'
 gem 'marked-rails'
 gem 'clam_scan'
+gem 'color-scheme-validator'
 
 # OAuth
 gem 'omniauth'
