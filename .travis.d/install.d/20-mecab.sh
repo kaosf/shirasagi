@@ -3,7 +3,8 @@
 #
 # install mecab
 #
-pushd .
+
+cd $HOME/local/src
 
 echo "wget http://mecab.googlecode.com/files/mecab-0.996.tar.gz"
 wget http://mecab.googlecode.com/files/mecab-0.996.tar.gz
@@ -11,15 +12,15 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-echo "tar xzf mecab-0.996.tar.gz"
-tar xzf mecab-0.996.tar.gz
+echo "tar xf mecab-0.996.tar.gz"
+tar xf mecab-0.996.tar.gz
 if [ $? -ne 0 ]; then
   exit 1
 fi
 
 cd mecab-0.996
-echo "./configure --enable-utf8-only"
-./configure --enable-utf8-only
+echo "./configure --prefix=\$HOME/local --enable-utf8-only"
+./configure --prefix=$HOME/local --enable-utf8-only
 
 echo "make"
 make
@@ -28,18 +29,13 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "make install"
-sudo make install
-
-echo "/usr/local/lib" | sudo tee -a /etc/ld.so.conf.d/user-local.conf
-echo "ldconfig"
-sudo ldconfig
-popd
+make install
 
 #
 # install ipadic
 #
 
-pushd .
+cd $HOME/local/src
 
 echo "wget http://mecab.googlecode.com/files/mecab-ipadic-2.7.0-20070801.tar.gz"
 wget http://mecab.googlecode.com/files/mecab-ipadic-2.7.0-20070801.tar.gz
@@ -47,15 +43,15 @@ if [ $? -ne 0 ]; then
   exit 2
 fi
 
-echo "tar xzf mecab-ipadic-2.7.0-20070801.tar.gz"
-tar xzf mecab-ipadic-2.7.0-20070801.tar.gz
+echo "tar xf mecab-ipadic-2.7.0-20070801.tar.gz"
+tar xf mecab-ipadic-2.7.0-20070801.tar.gz
 if [ $? -ne 0 ]; then
   exit 2
 fi
 
 cd mecab-ipadic-2.7.0-20070801
-echo "./configure --with-charset=utf8"
-./configure --with-charset=utf8
+echo "./configure --prefix=\$HOME/local --with-charset=utf8"
+./configure --prefix=$HOME/local --with-charset=utf8
 
 echo "make"
 make
@@ -64,14 +60,13 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "make install"
-sudo make install
-popd
+make install
 
 #
 # install mecab-ruby
 #
 
-pushd .
+cd $HOME/local/src
 
 echo "wget http://mecab.googlecode.com/files/mecab-ruby-0.996.tar.gz"
 wget http://mecab.googlecode.com/files/mecab-ruby-0.996.tar.gz
@@ -80,15 +75,15 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "tar xzf mecab-ruby-0.996.tar.gz"
-tar xzf mecab-ruby-0.996.tar.gz
+tar xf mecab-ruby-0.996.tar.gz
 if [ $? -ne 0 ]; then
   exit 3
 fi
 
 cd mecab-ruby-0.996
 
-echo "ruby extconf.rb"
-ruby extconf.rb
+echo "ruby extconf.rb --with-cppflags=-I\$HOME/local/include"
+ruby extconf.rb --with-cppflags=-I$HOME/local/include
 
 echo "make"
 make
@@ -98,4 +93,3 @@ fi
 
 echo "make install"
 make install
-popd

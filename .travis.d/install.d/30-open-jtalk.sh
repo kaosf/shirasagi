@@ -3,7 +3,8 @@
 #
 # install hts_engine_API
 #
-pushd .
+
+cd $HOME/local/src
 
 echo "wget http://downloads.sourceforge.net/hts-engine/hts_engine_API-1.08.tar.gz"
 wget http://downloads.sourceforge.net/hts-engine/hts_engine_API-1.08.tar.gz
@@ -19,8 +20,8 @@ fi
 
 cd hts_engine_API-1.08
 
-echo "./configure"
-./configure
+echo "./configure --prefix=\$HOME/local"
+./configure --prefix=$HOME/local
 
 echo "make"
 make
@@ -29,14 +30,13 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "make install"
-sudo make install
-
-popd
+make install
 
 #
 # install open_jtalk
 #
-pushd .
+
+cd $HOME/local/src
 
 echo "wget http://downloads.sourceforge.net/open-jtalk/open_jtalk-1.07.tar.gz"
 wget http://downloads.sourceforge.net/open-jtalk/open_jtalk-1.07.tar.gz
@@ -54,8 +54,8 @@ cd open_jtalk-1.07
 sed -i "s/#define MAXBUFLEN 1024/#define MAXBUFLEN 10240/" bin/open_jtalk.c
 sed -i "s/0x00D0 SPACE/0x000D SPACE/" mecab-naist-jdic/char.def
 
-echo "./configure --with-charset=UTF-8"
-./configure --with-charset=UTF-8
+echo "./configure --prefix=\$HOME/local --with-charset=UTF-8"
+./configure --prefix=$HOME/local --with-charset=UTF-8
 
 echo "make"
 make
@@ -64,14 +64,13 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "make install"
-sudo make install
-
-popd
+make install
 
 #
 # install lame
 #
-pushd .
+
+cd $HOME/local/src
 
 echo "wget http://downloads.sourceforge.net/lame/lame-3.99.5.tar.gz"
 wget http://downloads.sourceforge.net/lame/lame-3.99.5.tar.gz
@@ -81,8 +80,8 @@ fi
 
 tar xvzf lame-3.99.5.tar.gz
 cd lame-3.99.5
-echo "./configure"
-./configure
+echo "./configure --prefix=\$HOME/local"
+./configure --prefix=$HOME/local
 
 echo "make"
 make
@@ -91,14 +90,13 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "make install"
-sudo make install
-
-popd
+make install
 
 #
 # install sox
 #
-pushd .
+
+cd $HOME/local/src
 
 echo "wget http://downloads.sourceforge.net/sox/sox-14.4.1.tar.gz"
 wget http://downloads.sourceforge.net/sox/sox-14.4.1.tar.gz
@@ -114,8 +112,8 @@ fi
 
 cd sox-14.4.1
 
-echo "./configure"
-./configure
+echo "./configure --prefix=\$HOME/local"
+./configure --prefix=$HOME/local
 if [ $? -ne 0 ]; then
   exit 4
 fi
@@ -127,10 +125,6 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "make install"
-sudo make install
-
-popd
-
-sudo ldconfig
+make install
 
 exit 0

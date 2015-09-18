@@ -1,19 +1,29 @@
 language: ruby
-cache: bundler
-sudo: true
+cache:
+  directories:
+    - vendor/bundler
+    - $HOME/local
 rvm:
   - 2.2.2
 
 services:
   - mongodb
 
+addon:
+  apt:
+    packages:
+      - imagemagick
+      - libmagick++-dev
+before_script:
+  - mkdir -p $HOME/local/src
+  - export PATH=$HOME/local/bin:$PATH
+  - export LD_LIBRARY_PATH=$HOME/local/lib:/usr/local/lib:$LD_LIBRARY_PATH
+  - pushd .
+  - bash .travis.d/before_script.sh
+  - popd
 bundler_args: "--without development"
 install:
   - pushd .
   - bash .travis.d/install.sh
-  - popd
-before_script:
-  - pushd .
-  - bash .travis.d/before_script.sh
   - popd
 script: allow_open_jtalk=1 bundle exec rspec
